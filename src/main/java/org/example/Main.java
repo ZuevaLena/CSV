@@ -36,7 +36,7 @@ public class Main {
         writeString(xmlJson, "data2.json");
     }
 
-    private static List<Employee> parseCSV(String[] columnMapping, String fileName) {
+    public static List<Employee> parseCSV(String[] columnMapping, String fileName) {
         try (FileReader reader = new FileReader(fileName)) {
             ColumnPositionMappingStrategy<Employee> strategy = new ColumnPositionMappingStrategy<>();
             strategy.setType(Employee.class);
@@ -53,14 +53,14 @@ public class Main {
         }
     }
 
-    private static <T> String listToJson(List<T> list) {
+    public static <T> String listToJson(List<T> list) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
         Type listType = new TypeToken<List<T>>() {}.getType();
         return gson.toJson(list, listType);
     }
 
-    private static void writeString(String json, String fileName) {
+    public static void writeString(String json, String fileName) {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(json);
             writer.flush();
@@ -68,7 +68,7 @@ public class Main {
             e.printStackTrace();
         }
     }
-    private static List<Employee> parseXML(String fileName) {
+    public static List<Employee> parseXML(String fileName) {
         List<Employee> employees = new ArrayList<>();
         try {
             File file = new File(fileName);
